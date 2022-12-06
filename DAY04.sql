@@ -1,37 +1,40 @@
 --ALIASES
-drop table if exists calisanlar
-CREATE TABLE calisanlar  (
+drop table if exists calisanlar8
+CREATE TABLE calisanlar8 (
 calisan_id char(9),
 calisan_isim varchar(50),
 calisan_dogdugu_sehir varchar(50)
 );
-INSERT INTO calisanlar VALUES(123456789, 'Ali Can', 'Istanbul');  
-INSERT INTO calisanlar VALUES(234567890, 'Veli Cem', 'Ankara');  
-INSERT INTO calisanlar VALUES(345678901, 'Mine Bulut', 'Izmir');
-select * from calisanlar
+INSERT INTO calisanlar8 VALUES(123456789, 'Ali Can', 'Istanbul');  
+INSERT INTO calisanlar8 VALUES(234567890, 'Veli Cem', 'Ankara');  
+INSERT INTO calisanlar8 VALUES(345678901, 'Mine Bulut', 'Izmir');
+select * from calisanlar8
+
 -- Eğer iki sutunun verilerini birleştirmek istersek concat sembolu || kullanırız
 SELECT calisan_id AS id, calisan_isim||' '||calisan_dogdugu_sehir AS calisan_bilgisi FROM calisanlar
+
 --2. YOl
 SELECT calisan_id AS id, concat (calisan_isim,' ',calisan_dogdugu_sehir) AS calisan_bilgisi FROM calisanlar
+
 -- IS NULL CONDITION
-CREATE TABLE insanlar
+CREATE TABLE insanlar1
 (
 ssn char(9),
 name varchar(50),  
 adres varchar(50)
 );
-INSERT INTO insanlar VALUES(123456789, 'Ali Can', 'Istanbul');  
-INSERT INTO insanlar VALUES(234567890, 'Veli Cem', 'Ankara');  
-INSERT INTO insanlar VALUES(345678901, 'Mine Bulut', 'Izmir');  
-INSERT INTO insanlar (ssn, adres) VALUES(456789012, 'Bursa'); 
-INSERT INTO insanlar (ssn, adres) VALUES(567890123, 'Denizli');
-select * from insanlar
+INSERT INTO insanlar1 VALUES(123456789, 'Ali Can', 'Istanbul');  
+INSERT INTO insanlar1 VALUES(234567890, 'Veli Cem', 'Ankara');  
+INSERT INTO insanlar1 VALUES(345678901, 'Mine Bulut', 'Izmir');  
+INSERT INTO insanlar1 (ssn, adres) VALUES(456789012, 'Bursa'); 
+INSERT INTO insanlar1 (ssn, adres) VALUES(567890123, 'Denizli');
+select * from insanlar1
 -- Name sutununda null olan değerleri listeleyelim
-SELECT name FROM insanlar WHERE name IS NULL
+SELECT name FROM insanlar1 WHERE name IS NULL
 -- Insanlar taplosunda sadece null olmayan değerleri listeleyiniz
-SELECT name FROM insanlar WHERE name IS NOT NULL
+SELECT name FROM insanlar1 WHERE name IS NOT NULL
 -- Insanlar toplasunda null değer almış verileri no name olarak değiştiriniz
-UPDATE insanlar
+UPDATE insanlar1
 SET name='No Name'
 WHERE name is null;
 drop table if exists insanlar
@@ -42,32 +45,32 @@ Büyükten küçüğe yada küçükten büyüğe sıralama yapabiliriz
 Default olarak küçükten büyüğe sıralama yapar (ASC)
 Eğer BÜYÜKTEN KÜÇÜĞE sıralmak istersek ORDER BY komutundan sonra DESC komutunu kullanırız
 */
-CREATE TABLE insanlar
+CREATE TABLE insanlar3
 (
 ssn char(9),
 isim varchar(50),
 soyisim varchar(50),  
 adres varchar(50)
 );
-INSERT INTO insanlar VALUES(123456789, 'Ali','Can', 'Istanbul');
-INSERT INTO insanlar VALUES(234567890, 'Veli','Cem', 'Ankara');  
-INSERT INTO insanlar VALUES(345678901, 'Mine','Bulut', 'Ankara');  
-INSERT INTO insanlar VALUES(256789012, 'Mahmut','Bulut', 'Istanbul'); 
-INSERT INTO insanlar VALUES (344678901, 'Mine','Yasa', 'Ankara');  
-INSERT INTO insanlar VALUES (345678901, 'Veli','Yilmaz', 'Istanbul');
-select * from insanlar
+INSERT INTO insanlar3 VALUES(123456789, 'Ali','Can', 'Istanbul');
+INSERT INTO insanlar3 VALUES(234567890, 'Veli','Cem', 'Ankara');  
+INSERT INTO insanlar3 VALUES(345678901, 'Mine','Bulut', 'Ankara');  
+INSERT INTO insanlar3 VALUES(256789012, 'Mahmut','Bulut', 'Istanbul'); 
+INSERT INTO insanlar3 VALUES (344678901, 'Mine','Yasa', 'Ankara');  
+INSERT INTO insanlar3 VALUES (345678901, 'Veli','Yilmaz', 'Istanbul');
+select * from insanlar3
 --Insanlar tablosundaki datalari adres’e gore siralayin  
-SELECT * FROM insanlar ORDER BY adres;
-SELECT * FROM insanlar ORDER BY soyisim;
+SELECT * FROM insanlar3 ORDER BY adres;
+SELECT * FROM insanlar3 ORDER BY soyisim;
 --Insanlar tablosundaki ismi Mine olanlari SSN sirali olarak listeleyin
-SELECT * FROM insanlar WHERE isim='Mine' ORDER BY ssn
+SELECT * FROM insanlar3 WHERE isim='Mine' ORDER BY ssn
 --NOT : Order By komutundan sonra field(sutun) ismi yerine field(sutun) numarasi da kullanilabilir
 --Insanlar tablosundaki soyismi Bulut olanlari isim sirali olarak listeleyin 
-SELECT * FROM insanlar WHERE soyisim='Bulut' ORDER BY 2
+SELECT * FROM insanlar3 WHERE soyisim='Bulut' ORDER BY 2
 -- Insanlar tablosundaki tum kayitlari SSN numarasi buyukten kucuge olarak siralayin
-SELECT * FROM insanlar ORDER BY ssn DESC;
+SELECT * FROM insanlar3 ORDER BY ssn DESC;
 -- Insanlar tablosundaki tum kayitlari isimler Natural sirali, Soyisimler ters sirali olarak listeleyin
-SELECT * FROM insanlar ORDER BY isim ASC, soyisim DESC;
+SELECT * FROM insanlar3 ORDER BY isim ASC, soyisim DESC;
 -- İsim ve soyisim değerlerini soyisim kelime uzunluklarına göre sıralayınız
 /*
 Eğer sutun uzunluğuna göre sıralamak istersek LENGTH komutu kullanırız 
